@@ -58,7 +58,7 @@ export const JanusRouter = [
       },
       {
         path: '/test',
-        element: LazyLoad(React.lazy(() => import('@/pages/test'))),
+        element: LazyLoad(React.lazy(() => import('@/pages/Test'))),
         meta: {
           requiresAuth: false,
           title: 'test',

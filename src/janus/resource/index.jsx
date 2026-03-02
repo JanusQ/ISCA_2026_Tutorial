@@ -1,5 +1,4 @@
 import React from 'react'
-import path from 'path'
 import styles from './index.module.scss'
 import { Link } from 'react-router-dom'
 import { Row, Col, Card, Button, Tag } from 'antd'
