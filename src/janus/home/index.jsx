@@ -127,7 +127,7 @@ export default function JanusHomePage() {
               <div className="entry_header">
                 <div className="header_title">
                   <span>
-                    Janus 3.0: A Software Framework for Analyzing, Optimizing, Verifying, and Implementing Quantum Circuit
+                    Janus 4.0: Quantum-classical Heterogeneous Architecture and Flexible Scheduling
                   </span>
                 </div>
               </div>
