@@ -1,0 +1,1 @@
+import{u as e,j as p}from"./index-DGtwk74i.js";function i({}){const{state:{pdf:t}}=e();return p.jsx("embed",{style:{height:1e3},src:`/HPCA_2025_Tutorial/paper/${t}.pdf`,type:"application/pdf",width:"100%",height:"100%"})}export{i as default};
