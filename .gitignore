@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Local Trellis / agent workflow state
+.trellis/
+.agents/
+.claude/
+.codex/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
