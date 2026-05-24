@@ -9,7 +9,7 @@ export default function IpynbPreview() {
   } = useLocation()
   const [ipy, setipy] = useState('')
   const loadipynb = async (name) => {
-    const response = await fetch(`/HPCA_2025_Tutorial/demo/ipynb/${name}.ipynb`)
+    const response = await fetch(`/ISCA_2026_Tutorial/demo/ipynb/${name}.ipynb`)
     const ipynbBlob = await response.blob()
     const reader = new FileReader()
     reader.onload = function () {

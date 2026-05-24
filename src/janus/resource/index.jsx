@@ -1,47 +1,28 @@
-import React from 'react'
 import styles from './index.module.scss'
-import { Link } from 'react-router-dom'
-import { Row, Col, Card, Button, Tag } from 'antd'
+import { Row, Col } from 'antd'
 import { paperData } from '../home/data'
-import { FileOutlined, FilePdfOutlined } from '@ant-design/icons'
-import { downloadPdf, downloadPdfWithProgress } from '@/utils/utils'
+import { FilePdfOutlined } from '@ant-design/icons'
+import { downloadPdfWithProgress } from '@/utils/utils'
 
 export default function Resources() {
   const slides = [
-    // {
-    //   title: '0. Prolouge',
-    //   pdf: 'slide/0_Prolouge',
-    //   download_name: '0_Prolouge',
-    // },
     {
-      title: '1. Introduction',
-      pdf: 'slide/1_Introduction',
-      download_name: '1_Introduction',
+      title: '1. Introduction of Janus Quantum Cloud Platform',
     },
     {
-      title: '2. QuCT',
-      pdf: 'slide/2_QuCT',
-      download_name: '2_QuCT',
+      title: '2. Qtenon Details',
     },
     {
-      title: '3. MorphQPV',
-      pdf: 'slide/3_MorphQPV',
-      download_name: '3_MorphQPV',
+      title: '3. ARTERY Details',
     },
     {
-      title: '4. QuFEM',
-      pdf: 'slide/4_QuFEM',
-      download_name: '4_QuFEM',
+      title: '4. AdaptDQC Details',
     },
-    // {
-    //   title: '5. HyQSAT',
-    //   pdf: 'slide/5_HyQSAT',
-    //   download_name: '5_HyQSAT',
-    // },
     {
-      title: '5. Choco-Q',
-      pdf: 'slide/5_Choco-Q',
-      download_name: '5_Choco-Q',
+      title: '5. Choco-Q Details',
+    },
+    {
+      title: '6. EXP-QRAM Details',
     },
   ]
   // const videos = [
@@ -76,13 +57,17 @@ export default function Resources() {
               {paperData.map((item, index) => (
                 <div className="publication_item" key={index}>
                   <div className="paper_title">
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {item.title}
-                    </a>
+                    {item.link ? (
+                      <a
+                        href={item.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {item.title}
+                      </a>
+                    ) : (
+                      item.title
+                    )}
                   </div>
                   <div className="paper_team">{item.team}</div>
                   <div className="link">
@@ -95,13 +80,17 @@ export default function Resources() {
                         Preview
                       </Link>
                     </div> */}
-                    <div
-                      className="link_boder"
-                      onClick={() => downloadPdfWithProgress(item.pdf, item.download_name)}
-                    >
-                      <FilePdfOutlined style={{ marginRight: 10 }} />
-                      Download PDF
-                    </div>
+                    {item.pdf ? (
+                      <div
+                        className="link_boder"
+                        onClick={() => downloadPdfWithProgress(item.pdf, item.download_name)}
+                      >
+                        <FilePdfOutlined style={{ marginRight: 10 }} />
+                        Download PDF
+                      </div>
+                    ) : (
+                      <div className="link_text">Reference forthcoming</div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -122,14 +111,18 @@ export default function Resources() {
                           Preview
                         </Link>
                       </div> */}
-                      <div
-                        className="link_boder"
-                        onClick={() => {downloadPdfWithProgress(item.pdf, item.download_name)}
-                        }
-                      >
-                        <FilePdfOutlined style={{ marginRight: 10 }} />
-                        Download PDF
-                      </div>
+                      {item.pdf ? (
+                        <div
+                          className="link_boder"
+                          onClick={() => {downloadPdfWithProgress(item.pdf, item.download_name)}
+                          }
+                        >
+                          <FilePdfOutlined style={{ marginRight: 10 }} />
+                          Download PDF
+                        </div>
+                      ) : (
+                        <div className="link_text">To be posted</div>
+                      )}
                     </div>
                     {/* <div className="operate">
                       <Link to={'/pdfPreview'} state={{ pdf: item.pdf }}>

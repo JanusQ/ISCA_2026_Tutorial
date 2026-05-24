@@ -1,10 +1,8 @@
-import React, { useEffect, useState, useRef } from "react"
-import { Space, Table, Tag, Col, Row, Affix, Divider, Avatar } from "antd"
+import { useEffect, useState, useRef } from "react"
+import { Table, Col, Row, Affix, Divider, Avatar } from "antd"
 import styles from "./index.module.scss"
 
 import janus from "../../assets/image/janus_swiper/janus3_overview.svg"
-import paper from "../../assets/image/janus_swiper/paper.png"
-import Lightning from "../../assets/image/janus_swiper/Lightning.png"
 import { LinkOutlined, FileOutlined, FilePdfOutlined } from "@ant-design/icons"
 import {
   dataSource,
@@ -13,8 +11,7 @@ import {
   paperData,
   participantData
 } from "./data"
-import Title from "@/components/Title"
-import { downloadPdf, downloadPdfWithProgress } from "@/utils/utils"
+import { downloadPdfWithProgress } from "@/utils/utils"
 export default function JanusHomePage() {
   const homeContent = useRef()
   const Overview = useRef()
@@ -23,9 +20,6 @@ export default function JanusHomePage() {
   const RelatedPapers = useRef()
   const Organizer = useRef()
   const Acknowledgment = useRef()
-  const [windowHeight, setWindowHeight] = useState(0)
-  const [showArticContentNav, setshowArticContentNav] = useState(false)
-
   const homeNav = [
     {
       id: "Overview",
@@ -79,13 +73,13 @@ export default function JanusHomePage() {
       case "Acknowledgment":
         topPosition = Acknowledgment.current.offsetTop
         setnavAcitve("Acknowledgment")
+        break
       default:
         break
     }
     window.scrollTo({ top: topPosition + 300, behavior: "smooth" })
   }
   useEffect(() => {
-    setWindowHeight(document.body.clientHeight)
     window.addEventListener("scroll", homeContentOnScroll)
     return () => {
       window.removeEventListener("scroll", homeContentOnScroll)
@@ -175,13 +169,13 @@ export default function JanusHomePage() {
                     </h1>
                   </div>
                   <div className="home_overview_content">
-                    In this tutorial, we present Janus 3.0, an open-source framework with new features. This tutorial begins with a brief introduction to the Janus quantum cloud platform (janusq.zju.edu.cn), which can connect with the superconducting processors developed by Zhejiang University. Then, we provide the tutorial of the Janus 3.0 toolkit. To analyze the circuit, we introduce QuCT, a unified compilation framework that decouples analysis tasks into an upstream vectorization model and downstream models (MICRO 2023). Our vectorization technique helps to extract both contextual and topological features, enabling rigorous downstream optimization tasks. To optimize the circuit, we provide the code and demo of two representative downstream tasks, including fidelity optimization and unitary decomposition. To verify the correctness of the circuit, we introduce MorphQPV, which enables confident quantum program verification and repair by exploiting the isomorphism (ASPLOS 2024). We will introduce a flexible assertion statement method with an automatic validation flow. To calibrate the circuit output, we introduce QuFEM, a readout calibration method inspired by the finite element method. We will introduce the characterization of the readout error on various quantum devices and our fast and accurate calibration method with a code demonstration (ASPLOS 2024). Finally, we introduce a new quantum application, Choco-Q. Choco-Q is an enhanced version of QAOA based on commute Hamiltonian for constrained binary optimization problems (HPCA 2025).
+                    In this tutorial, we present Janus 4.0, an open-source framework for quantum-classical heterogeneous architecture and flexible scheduling. The tutorial begins with the Janus quantum cloud platform, which connects to superconducting processors developed by Zhejiang University. We then introduce Qtenon, a tightly coupled RISC-V architecture that unifies the memory hierarchy between the host and quantum accelerator, supports custom instructions for dynamic incremental compilation, and enables fine-grained synchronization for low-latency hybrid quantum-classical computing (ISCA 2025). To address the feedback latency wall in real-time control, we present ARTERY, a fast quantum feedback system that combines historical branch statistics and real-time readout trajectory analysis for speculative quantum-gate pre-execution (ISCA 2025). For distributed quantum computing, we introduce AdaptDQC, an adaptive compiler framework that models temporal and spatial communication with a unified graph and optimizes communication cost under diverse inter-chip architectures (TC 2025). The tutorial also covers Choco-Q, a quantum application framework for constrained binary optimization (HPCA 2025), and EXP-QRAM, an experimental realization of bucket-brigade quantum random access memory on superconducting devices (Nature Physics).
                   </div>
                   <div className="home_overview_supplement">
-                    It is our second time to hold this tutorial! We have hosted the tutorial at ASPLOS'24 in San Diego, USA.
+                    Janus Quantum tutorials have previously been presented at ASPLOS 2024, HPCA 2025, and APPT 2025. Janus 4.0 shifts the focus to quantum-classical hybrid architecture, low-latency control, distributed quantum computing, and new system-level quantum applications.
                   </div>
                   <div className="home_overview_supplement">
-                    Our tutorial will take place on March 2, 2025 at Room Wisteria, Westin Las Vegas from 1:00pm to 5:00pm.
+                    Our tutorial will take place on Sunday, June 28, 2026 during the ISCA 2026 morning session, 8:00am-12:00pm EDT, in Room 305B at the Raleigh Convention Center.
                   </div>
                 </div>
                 <Divider />
@@ -215,19 +209,6 @@ export default function JanusHomePage() {
                         rel="noreferrer"
                       >
                         janusq.zju.edu.cn
-                        <span className="LinkOutlined">
-                          <LinkOutlined />
-                        </span>
-                      </a>
-                    </div>
-                    <div className="home_link_outlined">
-                      <h4>JanusQ Cloud (accessible by public network during our tutorial):</h4>
-                      <a
-                        href="http://119.28.54.252:10211/home"
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        119.28.54.252:10211/home
                         <span className="LinkOutlined">
                           <LinkOutlined />
                         </span>
@@ -300,22 +281,29 @@ export default function JanusHomePage() {
                       <div className="home_paper_title">{item.title}</div>
                       <div className="home_paper_team">{item.team}</div>
                       <div className="home_paper_link">
-                        <a href={item.link} target="_blank">
-                          <div className="link_boder">
-                            <FileOutlined
-                              className="paper_icon"
-                              style={{ marginRight: 10 }}
-                            />
-                            URL
+                        {item.link && (
+                          <a href={item.link} target="_blank" rel="noreferrer">
+                            <div className="link_boder">
+                              <FileOutlined
+                                className="paper_icon"
+                                style={{ marginRight: 10 }}
+                              />
+                              URL
+                            </div>
+                          </a>
+                        )}
+                        {item.pdf && (
+                          <div
+                            className="link_boder"
+                            onClick={() => downloadPdfWithProgress(item.pdf, item.download_name)}
+                          >
+                            <FilePdfOutlined style={{ marginRight: 10 }} />
+                            Download PDF
                           </div>
-                        </a>
-                        <div
-                          className="link_boder"
-                          onClick={() => downloadPdfWithProgress(item.pdf, item.download_name)}
-                        >
-                          <FilePdfOutlined style={{ marginRight: 10 }} />
-                          Download PDF
-                        </div>
+                        )}
+                        {!item.link && !item.pdf && (
+                          <div className="link_text">Reference forthcoming</div>
+                        )}
                       </div>
                     </div>
                   ))}
@@ -339,10 +327,20 @@ export default function JanusHomePage() {
                       <div className="home_speaker_item" key={index}>
                           <div className="home_speaker_photo">
                             {/* <img src={item.photo} alt="" /> */}
-                            <Avatar src={item.photo} shape="square" size={100} />
+                            <Avatar
+                              src={item.photo}
+                              shape="square"
+                              size={100}
+                              style={{ backgroundColor: "#003b6f" }}
+                            >
+                              {item.initials}
+                            </Avatar>
                           </div>
                           <div className="home_speaker_content">
                             <div className="home_speaker_name">{item.name}</div>
+                            {item.topic && (
+                              <div className="home_speaker_topic">{item.topic}</div>
+                            )}
                             {item.introduce}
                           </div>
                         </div>
@@ -372,7 +370,7 @@ export default function JanusHomePage() {
                     </h1>
                   </div>
                   <div className="home_acknowledgment_content">
-                    We thank Haohua Wang, Chao Song, Zhen Wang, and Qiujiang Guo for providing quantum hardware and essential support for the tutorial.
+                    We thank the Janus Quantum team and collaborators for providing quantum hardware, cloud-platform support, and tutorial materials.
                   </div>
                 </div>
               </div>

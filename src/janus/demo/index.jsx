@@ -127,7 +127,7 @@ export default function Demonstrations() {
   const [showIpynb, setShowIpynb] = useState('')
   const loadipynb = async (name) => {
     NProgress.start()
-    const response = await fetch(`/HPCA_2025_Tutorial/demo/ipynb/${name}.ipynb`)
+    const response = await fetch(`/ISCA_2026_Tutorial/demo/ipynb/${name}.ipynb`)
     const ipynbBlob = await response.blob()
     const reader = new FileReader()
     reader.onload = function () {

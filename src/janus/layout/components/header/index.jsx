@@ -1,32 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { Button, Popover, Dropdown, Space, Row, Col } from 'antd'
-import { DownOutlined } from '@ant-design/icons'
+import { Link } from 'react-router-dom'
+import { Dropdown, Row, Col } from 'antd'
 import styles from './index.module.scss'
 import logo from '@/assets/image/logo.png'
 import { MenuOutlined } from '@ant-design/icons'
 
 const menuData = [
   { key: 1, name: "Home", link: <Link to="/home">Home</Link> },
-  { key: 2, name: "JanusQ", link: <a href="http://119.28.54.252:10211/home" target="_blank" rel="noreferrer">JanusQ</a> },
+  { key: 2, name: "JanusQ", link: <a href="http://janusq.zju.edu.cn" target="_blank" rel="noreferrer">JanusQ</a> },
   { key: 3, name: "Demo", link: <Link to="/demo">Demo</Link> },
   { key: 4, name: "Resource", link: <Link to="/resource">Resource</Link> },
   { key: 5, name: "Github", link: <a href="https://github.com/JanusQ/JanusQ" target="_blank" rel="noreferrer">Github</a> },
   { key: 6, name: "Team", link: <a href="https://janusq.github.io/team/home" target="_blank" rel="noreferrer">Team</a> },
-];
+]
 
-export default function JanusHeader({ fontColor }) {
-  const [showSelect, setShowSelect] = useState(false)
-  const onMouseOver = () => {}
+export default function JanusHeader() {
   const headerMenu = menuData.map(({ link }, index) => (
     <div key={index} className={"menu_item"}>
       <span className={"header_menu_item_black"}>{link}</span>
     </div>
-  ));
+  ))
   const dropdownItems = menuData.map(({ key, link }) => ({
     key,
     label: link,
-  }));
+  }))
   return (
     <div className={styles.root}>
       <Row
