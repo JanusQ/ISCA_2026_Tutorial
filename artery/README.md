@@ -99,9 +99,3 @@ Result figures used by the notebooks are under:
 ```text
 demo/results/
 ```
-
-The figures exported from the original notebook are preserved in:
-
-```text
-demo/results/original_notebook/
-```
