@@ -6,36 +6,24 @@ This topic follows the tutorial topic layout:
 
 ```text
 docs/       Notes and tutorial documentation
-hw/fpga/    Vivado 2024.2 FPGA project for the XCZU47DR board
+hw/         Hardware interface contract, not the full Vivado source tree
 software/   Python analysis library, API server, and demo scripts
 tools/      Host-side UDP test scripts and GUI demo
-tutorial/   Notebook tutorial entry for software-side feedback analysis
+demo/       Numbered notebooks and result figures
 ```
 
-## Hardware Quick Start
+## Hardware Interface
 
-```bash
-cd hw/fpga
-vivado -mode batch -source run_synth.tcl
-vivado -mode batch -source gen_bitstream.tcl
-```
-
-The generated bitstream is expected under the Vivado implementation run directory:
+The complete Vivado project is intentionally not included here. The tutorial keeps the interface-level boundary used by the reproduced board demo:
 
 ```text
-hw/fpga/custom_xczu47dr_rfdc.runs/impl_1/
+hw/interface/
+├── artery_feedback_interface.v
+├── feedback_datapath.md
+└── udp_packet_format.md
 ```
 
-For board testing, configure the host 10G NIC and run:
-
-```bash
-cd artery
-python3 tools/hardware_test/artery_ddr_latency_check.py \
-  --interface enp225s0f0 \
-  --iface-ip 192.168.1.3 \
-  --fpga-ip 192.168.1.128 \
-  --port 1234
-```
+This documents the UDP/DDR/readout stream, ARTERY feedback decision metadata, and feedback waveform output interface.
 
 ## Software Quick Start
 
@@ -84,20 +72,16 @@ python3 artery_remote_control.py
 
 The GUI can configure the bitstream, network parameters, S21 input file, FPGA programming command, UDP test command, and feedback waveform visualization.
 
-## Repository Notes
+## Demo Notebooks
 
-Generated Vivado outputs are intentionally not included:
+The numbered notebooks are under:
 
 ```text
-*.bit
-*.ltx
-*.dcp
-*.jou
-*.log
-*.wdb
-hw/fpga/custom_xczu47dr_rfdc.runs/
-hw/fpga/custom_xczu47dr_rfdc.gen/
-hw/fpga/custom_xczu47dr_rfdc.hw/
+demo/ipynb/
 ```
 
-Rebuild them locally with Vivado 2024.2.
+Result figures used by the notebooks are under:
+
+```text
+demo/results/
+```
