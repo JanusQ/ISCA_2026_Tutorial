@@ -17,3 +17,12 @@ Recommended presentation flow:
 2. Review the hardware interface contract.
 3. Send S21/IQ data through UDP in the board demo.
 4. Display the returned branch decision, latency, and feedback waveform.
+
+The demo notebooks are split from the original software feedback notebook and expanded with ARTERY-specific explanations:
+
+```text
+demo/ipynb/      Runnable tutorial notebooks
+demo/results/   Static figures used by the notebooks
+```
+
+The full Vivado project is not stored in this tutorial topic. Only the packet format, datapath description, and Verilog interface wrapper are kept under `hw/interface/`.

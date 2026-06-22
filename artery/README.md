@@ -80,8 +80,28 @@ The numbered notebooks are under:
 demo/ipynb/
 ```
 
+They are split and extended from the original software feedback analysis notebook. Each notebook keeps the runnable Python cells separate from the fixed result figures, then adds the ARTERY hardware/predictor interpretation.
+
+Recommended order:
+
+```text
+1_1_artery_overview.ipynb
+1_2_s21_data_loading.ipynb
+2_1_iq_demodulation.ipynb
+2_2_state_classification.ipynb
+2_3_segmented_demodulation_and_prediction.ipynb
+3_1_trajectory_and_window_search.ipynb
+4_1_branch_history_and_hardware_interface.ipynb
+```
+
 Result figures used by the notebooks are under:
 
 ```text
 demo/results/
+```
+
+The figures exported from the original notebook are preserved in:
+
+```text
+demo/results/original_notebook/
 ```
