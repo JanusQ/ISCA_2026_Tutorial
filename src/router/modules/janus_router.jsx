@@ -77,9 +77,7 @@ export const JanusRouter = [
   },
   {
     path: '/demo/:fileName',
-    element: LazyLoad(
-      React.lazy(() => import('../../janus/demo/index'))
-    ),
+    element: <Navigate to="/home" />,
     meta: {
       requiresAuth: false,
       title: 'demo_file',
@@ -88,9 +86,7 @@ export const JanusRouter = [
   },
   {
     path: '/demo',
-    element: LazyLoad(
-      React.lazy(() => import('../../janus/demo/index'))
-    ),
+    element: <Navigate to="/home" />,
     meta: {
       requiresAuth: false,
       title: 'demo',

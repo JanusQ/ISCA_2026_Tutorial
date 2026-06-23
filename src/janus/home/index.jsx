@@ -215,13 +215,13 @@ export default function JanusHomePage() {
                       </a>
                     </div>
                     <div className="home_link_outlined">
-                      <h4>Source code of JanusQ:</h4>
+                      <h4>Source code of Janus4:</h4>
                       <a
-                        href="https://github.com/JanusQ/JanusQ"
+                        href="https://github.com/JanusQ/Janus4"
                         target="_blank"
                         rel="noreferrer"
                       >
-                        github.com/JanusQ/JanusQ
+                        github.com/JanusQ/Janus4
                         <span className="LinkOutlined">
                           <LinkOutlined />
                         </span>
