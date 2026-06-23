@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react"
 import { Table, Col, Row, Affix, Divider, Avatar } from "antd"
 import styles from "./index.module.scss"
 
-import janus from "../../assets/image/janus_swiper/janus3_overview.svg"
+import janus from "../../assets/image/janus_swiper/janus4_overview.svg"
 import { LinkOutlined, FileOutlined, FilePdfOutlined } from "@ant-design/icons"
 import {
   dataSource,
