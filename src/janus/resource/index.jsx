@@ -13,16 +13,16 @@ export default function Resources() {
       title: '2. Qtenon Details',
     },
     {
-      title: '3. ARTERY Details',
+      title: '3. AdaptDQC Details',
     },
     {
-      title: '4. AdaptDQC Details',
+      title: '4. EXP-QRAM Details',
     },
     {
-      title: '5. Choco-Q Details',
+      title: '5. ARTERY Details',
     },
     {
-      title: '6. EXP-QRAM Details',
+      title: '6. Choco-Q Details',
     },
   ]
   // const videos = [
